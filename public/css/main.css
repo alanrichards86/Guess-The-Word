@@ -1,0 +1,16 @@
+body h1 {
+  text-align: center;
+}
+body h2 {
+  text-align: center;
+}
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wordsDiv {
+  display: flex;
+  flex-direction: row;
+  font-size: 1em;
+}

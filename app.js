@@ -39,11 +39,13 @@ app.post('/Guess-It', function(req, res){
 
   req.checkBody('inputField', 'Please enter at the most 1 letter before hitting the "GUESS" button. ').notEmpty();
   req.checkBody('inputField', 'Please enter only one letter before hitting the "GUESS" button. ').isLength({max: 1});
+  req.checkBody('inputField', 'Please enter only letters.').isAlpha();
 
   let errors = req.validationErrors();
 
   if (errors){
     errors.forEach(function(error) {
+      messages = [];
       messages.push(error.msg);
       console.log(messages);
     });

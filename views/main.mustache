@@ -14,22 +14,35 @@
     <br>
     <br>
 
-    <div class="mainDiv">
+    <div id="mainDiv">
       <p>Guess That Word !</p>
       <p>This is how many guess you have left:<span class="guessLeft"></span></p>
       <br>
       <p>Here you go. Try and guess the word. You get 8 guesses and 1 letter per guess.</p>
       <p>If you guess the same letter it won't be counted against you.</p>
+
+      <div id="errorDiv">
+        {{#mainError}}
+          <p>{{.}}</p>
+        {{/mainError}}
+      </div>
+
       <form class="mainForm" action="/Guess-It" method="post">
         <input type="text" name="inputField" placeholder="Guess Here">
         <button type="submit" name="button">GUESS!</button>
         <br>
-        <div class="wordsDiv">
-            {{#randomWords}}
-              <p>{{.}}</p>
-            {{/randomWords}}
+        <div id="wordsDiv">
+          {{#randomWords}}
+            <p>{{.}}</p>
+          {{/randomWords}}
         </div>
       </form>
+
+      <div id="guessedLetterDiv">
+        {{#userGuesses}}
+        <p>{{.}}</p>
+        {{/userGuesses}}
+      </div>
     </div>
   </body>
 </html>

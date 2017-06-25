@@ -5,9 +5,12 @@ const path = require('path');
 const session = require('express-session');
 const validator = require('express-validator');
 const fs = require('fs');
+//Variable for our random words.
 const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+//Variable selection the random word.
 var differentWords = words [Math.floor(Math.random() * words.length)];
-var newWord = differentWords.split('');
+//Variable spliting the random word.
+var newWord = differentWords.toUpperCase().split('');
 
 const app = express();
 
@@ -37,6 +40,8 @@ app.get('/Guess-It', function(req, res){
 });
 
 app.post('/Guess-It', function(req, res){
+  //Variable Containing error messages. Its placed here to clear it each time an error is found..
+  // ... so they don't stack on top of each other.
   var messages = [];
   req.checkBody('inputField', 'Please enter a letter to guess ....').isAlpha();
   req.checkBody('inputField', 'Please enter at the most 1 letter before hitting the "GUESS" button. ').notEmpty();
@@ -50,13 +55,15 @@ app.post('/Guess-It', function(req, res){
       messages.push(error.msg);
       console.log(messages);
 
-      // res.render('main', {randomWords:newWord, mainError: messages});
     });
   }
 
-  let newVar = req.body.inputField;
+    //Variable for what is typed in by the user.
+  let newVar = req.body.inputField.toUpperCase();
   req.session.guess = newVar;
+
   req.session.messages = messages;
+
 
     if (!req.session.allGuesses) {
       req.session.allGuesses = [];

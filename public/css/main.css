@@ -14,3 +14,14 @@ body h2 {
   flex-direction: row;
   font-size: 1em;
 }
+#wordsDiv p {
+  display: none;
+}
+#guessedLetterDiv {
+  display: flex;
+  flex-direction: row;
+}
+#guessedLetterDiv p {
+  margin-left: 1em;
+  text-decoration: underline;
+}

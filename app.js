@@ -6,13 +6,6 @@ const session = require('express-session');
 const router = require('./routes/router.js')
 const validator = require('express-validator');
 
-// const fs = require('fs');
-// //Variable for our random words.
-// const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
-// //Variable selection the random word.
-// var differentWords = words [Math.floor(Math.random() * words.length)];
-// //Variable spliting the random word.
-// var newWord = differentWords.toUpperCase().split('');
 
 const app = express();
 

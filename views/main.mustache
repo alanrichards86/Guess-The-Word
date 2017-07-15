@@ -16,7 +16,7 @@
 
     <div id="mainDiv">
       <p>Guess That Word !</p>
-      <p>This is how many guesses you have left:<span class="guessLeft"></span></p>
+      <p>This is how many guesses you have left:<span class="trysLeft">{{#try}} {{.}} {{/try}}</span></p>
       <br>
       <p>Here you go. Try and guess the word. You get 8 guesses and 1 letter per guess.</p>
       <p>If you guess the same letter it won't be counted against you.</p>

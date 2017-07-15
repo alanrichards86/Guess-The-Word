@@ -2,7 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const app = require('../app.js');
-var numTrysLeft = 10;
+var numTrysLeft = 8;
+var letterGuessed = [];
 
 const fs = require('fs');
 //Variable for our random words.
@@ -17,7 +18,7 @@ router.get('/', function(req, res){
 });
 
 router.get('/Guess-It', function(req, res){
-  // console.log(req.session);
+  console.log(newWord);
   // console.log(req.session.guess);
   res.render('main', {mainError: req.session.messages,
                       randomWords: newWord,
@@ -53,14 +54,32 @@ router.post('/Guess-It', function(req, res){
 
     //Variable for what is typed in by the user.
   let newVar = req.body.inputField.toUpperCase();
-  req.session.guess = newVar;
+    for(let i = 0; i < newWord.length; i++){
+      newVar = newWord;
+      // console.log(newWord);
+
+        // newGuessedLetters.push(newVar);
+
+        //Checks to see if gueesed letter = random word
+      // if(req.body.inputField.toUpperCase() != newVar.indexOf()){
+      //   console.log('Hi');
+      //
+      //   return res.redirect('/Guess-It');
+      // }
 
 
+      if(req.body.inputField.toUpperCase() === newVar.indexOf(i)){
+        console.log('Yay!');
+
+        return res.redirect('/Guess-It');
+
+      }
+    }
      if(!req.session.allGuesses) {
       req.session.allGuesses = [];
       req.session.messages = [];
     }
-    req.session.allGuesses.push(newVar);
+    // req.session.allGuesses.push(newVar);
 
     res.redirect('/Guess-It');
 

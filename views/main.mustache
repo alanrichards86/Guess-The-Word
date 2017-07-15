@@ -31,12 +31,12 @@
         <input type="text" name="inputField" placeholder="Guess Here">
         <button type="submit" name="button">GUESS!</button>
         <br>
-        <div id="wordsDiv">
-          {{#randomWords}}
-            <p>{{.}}</p>
-          {{/randomWords}}
-        </div>
       </form>
+      <div id="wordsDiv">
+        {{#randomWords}}
+          <p>{{.}}</p>
+        {{/randomWords}}
+      </div>
 
       <div id="guessedLetterDiv">
         {{#userGuesses}}

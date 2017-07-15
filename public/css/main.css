@@ -15,7 +15,8 @@ body h2 {
   font-size: 1em;
 }
 #wordsDiv p {
-  display: none;
+  display: block;
+  letter-spacing: 10px;
 }
 #guessedLetterDiv {
   display: flex;

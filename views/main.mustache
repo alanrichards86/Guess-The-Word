@@ -22,6 +22,9 @@
       <p>If you guess the same letter twice or more it won't be counted against you.</p>
 
       <div id="errorDiv">
+        {{#sameLetterGuessed}}
+          <p>{{.}}</p>
+        {{/sameLetterGuessed}}
         {{#mainError}}
           <p>{{.}}</p>
         {{/mainError}}

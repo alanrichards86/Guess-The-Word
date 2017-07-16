@@ -2,11 +2,13 @@
 const express = require('express');
 const router = express.Router();
 const app = require('../app.js');
-var numTrysLeft = 2;
+var numTrysLeft = 8;
 var wrongLetterGuessed = [];
 var rightLetters = [];
 var letterHolder = [];
 var underscore = [];
+var messages = [];
+var sameLetterGuessed = [];
 
 const fs = require('fs');
 //Variable for our random words.
@@ -26,12 +28,12 @@ router.get('/', function(req, res){
 });
 
 router.get('/You-Win', function(req, res){
-  res.render('gameWon');
-})
+  res.render('gameWon', {randomWords: newWord});
+});
 
 router.post('/', function(req, res){
   underscore = [];
-  numTrysLeft = 2;
+  numTrysLeft = 8;
   wrongLetterGuessed = [];
   differentWords = words [Math.floor(Math.random() * words.length)];
   newWord = differentWords.toUpperCase().split('');
@@ -48,7 +50,8 @@ router.get('/Guess-It', function(req, res){
                       randomWords: newWord,
                       userGuesses: wrongLetterGuessed,
                       try: numTrysLeft,
-                      letterUnderscore: underscore
+                      letterUnderscore: underscore,
+                      sameGuess: sameLetterGuessed
                       });
 });
 
@@ -62,7 +65,7 @@ router.post('/Guess-It', function(req, res){
 
   // Variable Containing error messages. Its placed here to clear it each time an error is found..
   // ... so they don't stack on top of each other.
-  var messages = [];
+  messages = [];
 
   var guessed = false;
   req.checkBody('inputField', 'Please enter a letter and not a number ....').isAlpha();
@@ -77,7 +80,6 @@ router.post('/Guess-It', function(req, res){
       messages = [];
       messages.push(error.msg);
       console.log(messages);
-      // validate.valid(req, res);
       req.session.messages = messages;
     });
     return res.redirect('/Guess-It');
@@ -101,54 +103,18 @@ router.post('/Guess-It', function(req, res){
         wrongLetterGuessed.push(newVar);
         numTrysLeft -= 1;
     }
-
+  
     if (numTrysLeft == 0){
       return res.redirect('/End-Game')
       }
 
-    for (let n = 0; n < underscore.length; n++){
-      underscore = underscore[n];
-      if (underscore.indexOf('_') < 0)
-      return res.redirect('/YouWin');
-    }
+      if (underscore.indexOf('_') < 0) {
+      return res.redirect('/You-Win');
+      }
+
     res.redirect('/Guess-It');
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Variable for what is typed in by the user.
-
-      // }else if(newVar != iterateWord && guessed === false) {
-      //   numTrysLeft -= 1;
-      //   return res.redirect('/Guess-It');
-      // }
-    // }
-    //  if(!req.session.allGuesses) {
-    //   req.session.allGuesses = [];
-    //   req.session.messages = [];
-    // }
-    // req.session.allGuesses.push(newVar);
-
-
-
-  // });
-
-
-
-
-
 
 module.exports = router;

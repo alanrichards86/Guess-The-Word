@@ -6,7 +6,9 @@
   </head>
   <body>
     <h2>Dude You Won !!!!</h2>
-    <p>Great job. Would you like to try again ? If so hit this button.</p>
+    <p>Great job. You guessed {{#randomWords}}{{.}}{{/randomWords}}.<br>
+       Would you like to try again ?<br>
+        If so hit this button.</p>
     <form action="/" method="post">
       <button type="submit" name="button">Do It !</button>
     </form>

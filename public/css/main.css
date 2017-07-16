@@ -15,12 +15,22 @@ body h2 {
   font-size: 1em;
 }
 #wordsDiv p {
-  display: block;
+  display: inline-block;
   letter-spacing: 10px;
+}
+#underscoreDiv p {
+  display: inline-block;
 }
 #guessedLetterDiv {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  width: 21.5em;
+}
+#guessedLetterDiv h2 {
+  border-bottom: 1px solid red;
+
 }
 #guessedLetterDiv p {
   margin-left: 1em;

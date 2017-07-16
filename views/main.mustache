@@ -19,7 +19,7 @@
       <p>This is how many guesses you have left:<span class="trysLeft">{{#try}} {{.}} {{/try}}</span></p>
       <br>
       <p>Here you go. Try and guess the word. You get 8 guesses and 1 letter per guess.</p>
-      <p>If you guess the same letter it won't be counted against you.</p>
+      <p>If you guess the same letter twice or more it won't be counted against you.</p>
 
       <div id="errorDiv">
         {{#mainError}}
@@ -32,13 +32,20 @@
         <button type="submit" name="button">GUESS!</button>
         <br>
       </form>
-      <div id="wordsDiv">
+      <!-- <div id="wordsDiv">
         {{#randomWords}}
           <p>{{.}}</p>
+          <br>
         {{/randomWords}}
+      </div> -->
+      <div id="underscoreDiv">
+        {{#letterUnderscore}}
+          <p>{{.}}</p>
+        {{/letterUnderscore}}
       </div>
 
       <div id="guessedLetterDiv">
+        <h2>Your incorrect letters are displayed below.</h2>
         {{#userGuesses}}
         <p>{{.}}</p>
         {{/userGuesses}}

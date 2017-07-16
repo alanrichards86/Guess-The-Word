@@ -25,6 +25,10 @@ router.get('/', function(req, res){
   res.redirect('/Guess-It');
 });
 
+router.get('/You-Win', function(req, res){
+  res.render('gameWon');
+})
+
 router.post('/', function(req, res){
   underscore = [];
   numTrysLeft = 2;
@@ -96,11 +100,20 @@ router.post('/Guess-It', function(req, res){
     if (guessed === false && newVar != wrongLetterGuessed && errors != true){
         wrongLetterGuessed.push(newVar);
         numTrysLeft -= 1;
-    } if (numTrysLeft == 0){
+    }
 
-        return res.redirect('/End-Game')
+    if (numTrysLeft == 0){
+      return res.redirect('/End-Game')
       }
+
+    for (let n = 0; n < underscore.length; n++){
+      underscore = underscore[n];
+      if (underscore.indexOf('_') < 0)
+      return res.redirect('/YouWin');
+    }
     res.redirect('/Guess-It');
+
+
 });
 
 
